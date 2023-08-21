@@ -28,7 +28,7 @@ font:
 draw_bold_text_with_bright_colors: true
   
 import:
-  - ~/.config/alacritty/themes/tokyo-night.yaml
+  - ~/.config/alacritty/tokyo-night.yaml
 
 selection:
   save_to_clipboard: false
