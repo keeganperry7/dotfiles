@@ -144,7 +144,7 @@ super + Print
 
 # Shortcuts
 super + w
-	opera
+	firefox
 
 super + x
 	powermenu
