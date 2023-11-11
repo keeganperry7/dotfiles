@@ -33,5 +33,12 @@ import:
 selection:
   save_to_clipboard: false
 
+shell:
+  program: /usr/bin/fish
+  # args:
+  #   - -l
+  #   - -c
+  #   - "tmux attach || tmux"
+
 key_bindings:
   - { key: Return, mods: Super|Shift, action: SpawnNewInstance }
