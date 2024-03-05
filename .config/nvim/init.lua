@@ -121,9 +121,12 @@ require('lazy').setup({
     'lukas-reineke/indent-blankline.nvim',
     -- Enable `lukas-reineke/indent-blankline.nvim`
     -- See `:help indent_blankline.txt`
+    main = 'ibl',
     opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
+      indent = { char = "┊" },
+      scope = { enabled = false },
+      -- char = '┊',
+      -- show_trailing_blankline_indent = false,
     },
   },
 
@@ -290,11 +293,17 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
   ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'typescript', 'vimdoc', 'vim', 'c_sharp',
-    'haskell', 'ocaml' },
+    'haskell', 'ocaml', 'bash' },
 
   -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
   auto_install = false,
-
+  -- Install languages synchronously (only applied to `ensure_installed`)
+  sync_install = false,
+  -- List of parsers to ignore installing
+  ignore_install = {},
+  -- You can specify additional Treesitter modules here: -- For example: --
+  -- playground = {-- enable = true, --},
+  modules = {},
   highlight = { enable = true },
   indent = { enable = true },
   incremental_selection = {
@@ -383,7 +392,7 @@ local on_attach = function(_, bufnr)
   nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
   nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
   nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-  nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+  nmap('<leader>Ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
@@ -391,9 +400,9 @@ local on_attach = function(_, bufnr)
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
-  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
-  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
-  nmap('<leader>wl', function()
+  nmap('<leader>Wa', vim.lsp.buf.add_workspace_folder, '[W]orkspace [A]dd Folder')
+  nmap('<leader>Wr', vim.lsp.buf.remove_workspace_folder, '[W]orkspace [R]emove Folder')
+  nmap('<leader>Wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
 
